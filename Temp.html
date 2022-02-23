@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,html {
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        body {
+            background: #F0F4EF;
+        }
+        #header {
+            background: #35A7FF;
+            height: 50px;
+        }
+        form > p {
+            margin: 0;
+            padding: 0;
+        }
+        #logo {
+            position: relative;
+            display: inline;
+            color: #344966;
+            font-family: "arial";
+            font-weight: bold;
+            font-size: 30px;
+            margin: 0;
+            top: 10px;
+            left: 45px;
+        }
+        #logo:hover {
+            color: #FFB800;
+        }
+        #templateGenerator {
+            background: #FFB800;
+            position: relative;
+            border: 2px solid;
+            width: 450px;
+            border-radius: 5px;
+            left: 45px;
+            top: 20px;
+            line-height: 23px;
+            height: auto;
+        }
+        #formText {
+            position:relative;
+            left: 15px;
+            top: 10px;
+            font-size: 15px;
+        }
+        .fieldValues {
+            position: absolute;
+            background: #F0F4EF;
+            border: 1px solid; 
+            border-radius: 5px;
+            left: 110px;
+            width: 300px;
+            overflow: hidden;
+        }
+        #contactNumber {
+            width: 205px;
+        }
+        /* For Firefox */
+
+        input[type='number'] {
+            -moz-appearance:textfield;
+        }
+        /* Webkit browsers like Safari and Chrome */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+            margin: 0;
+            
+        }
+        #urgency {
+            position: absolute;
+            background: #F0F4EF;
+            border: 1px solid; 
+            border-radius: 5px;
+            left: 110px;
+            width: 211px;
+            line-height: px;
+        }
+        #issueDesc {
+            background: #F0F4EF;
+            border: 1px solid; 
+            border-radius: 5px;
+            resize: none;
+            width: 410px;
+            word-wrap: break-word;
+            overflow: hidden;
+            
+        }
+        #resetBtn {
+            position: relative;
+            border: 2px solid;
+            border-radius: 5px;
+            font-weight: bold;
+            height: 30px;
+            left: 260px;
+            background: #FFB800;
+        }
+        #resetBtn:hover {
+            color: #FFB800;
+            border: 2px solid black;
+            background: black;
+        }
+        #createBtn {
+            position: relative;
+            border: 2px solid #344966;
+            border-radius: 5px;
+            font-weight: bold;
+            height: 30px;
+            left: 280px;
+            background: #344966;
+            color: #F0F4EF;
+        }
+        #createBtn:hover {
+            color: #FFB800;
+            background: black;
+            border: 2px solid black;
+        }
+        .copyBtn {
+            position: relative;
+            background: transparent;
+            border: transparent;
+            border-radius: 5px;
+            color: black;
+            left:18px;
+            width: 410px;
+            top: 10px;
+            padding: 0;
+            margin: 0;
+        }
+        .copyBtn:hover {
+            background: #FFCD4D;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div id="logo">
+            LOGO
+        </div>
+    </header>
+    <!-- Template Generator Section -->
+    <section id="templateGenerator">
+        <form action="" name="myForm" id="myForm">
+            <p id="formText">
+                Ticket Number: 
+                <input type="text" name="ticketNumber" id="ticketNumber" class="fieldValues" maxlength="15"><br>
+                Caller Name:
+                <input type="text" name="callerName" id="callerName" class="fieldValues" maxlength="45"><br>
+                Center Name: 
+                <input type="text" name="centerName" id="centerName" class="fieldValues" maxlength="45"><br>
+                Contact Number: 
+                <input type="number" name="contactNumber" id="contactNumber" class="fieldValues" maxlength="15" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"><br>
+                Is this Urgent?
+                <select name="urgency" id="urgency" required>
+                    <option value="Select Reason" disabled selected="true">Select Reason</option>
+                    <option value="Reason 1">Reason 1</option>
+                    <option value="Reason 2">Reason 2</option>
+                    <option value="Reason 3">Reason 3</option>
+                    <option value="Reason 4">Reason 4</option>
+                    <option value="Reason 5">Reason 2</option>
+                </select><br>
+                Issue Title:
+                <input type="text" name="issueTitle" id="issueTitle" required class="fieldValues" maxlength="45"><br>
+                <label for="issueDesc">Issue Description:</label><br>
+                <textarea name="issueDesc" id="issueDesc" cols="30" rows="10"></textarea><br>
+                <button type="reset" id="resetBtn" name="resetBtn" onClick="toReset(); return false">RESET</button>
+                <button type="submit" id="createBtn" name="createBtn" onClick="toShow(); return false">CREATE</button>
+            </p>
+            <button id="submit" id="copyBtn" class="copyBtn" onclick="toCopy(); return false" style="text-align: left">
+                <p id="myDisp1" style="white-space: pre"></p>
+            </button>
+        </form>
+    </section>
+    <!-- Reevant Functions -->
+    <script>
+        function toShow(){
+            let ticketNumber = document.myForm.ticketNumber.value;
+            let callerName = document.myForm.callerName.value;
+            let centerName = document.myForm.centerName.value;
+            let contactNumber= document.myForm.contactNumber.value;
+            let urgency = document.myForm.urgency.value;
+            let issueTitle = document.myForm.issueTitle.value;
+            let issueDesc = document.myForm.issueDesc.value.replace('/\n\r?/g', '\n');
+            let text = document.getElementById('myDisp1').innerText;
+
+            if (urgency == 'Select Reason') {
+                urgency = "Not Stated"
+            }
+            document.getElementById('myDisp1').innerHTML = "Ticket Number: " + ticketNumber + "\nCaller Name: " + callerName + "\nCenter Name: " + centerName + "\nContact Number: " + contactNumber + "\nUrgent? " + urgency + "\nIssue Title: " + issueTitle + "\nIssue Description: \n\n" + issueDesc + "\n\nRelevant Screenshots:\n";
+        }
+        function toReset() {
+            document.getElementById('myForm').reset();
+            document.getElementById('myDisp1').innerText = "";
+        }
+        function toCopy() {
+            let ticketNumber = document.myForm.ticketNumber.value;
+            let callerName = document.myForm.callerName.value;
+            let centerName = document.myForm.centerName.value;
+            let contactNumber= document.myForm.contactNumber.value;
+            let urgency = document.myForm.urgency.value;
+            let issueTitle = document.myForm.issueTitle.value;
+            let issueDesc = document.myForm.issueDesc.value.replace('/\n\r?/g', '\n');
+            
+            if (urgency == 'Select Reason') {
+                urgency = "Not Stated"
+            }
+            let text = document.getElementById('myDisp1').innerText;
+
+            navigator.clipboard.writeText(text).then(function() {
+                console.log('Async: Copying to clipboard was successful!');
+                }, function(err) {
+                console.error('Async: Could not copy text: ', err);
+        })};
+    </script>
+</body>
+</html>
